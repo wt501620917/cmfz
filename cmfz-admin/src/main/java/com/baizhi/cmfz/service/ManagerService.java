@@ -1,7 +1,6 @@
 package com.baizhi.cmfz.service;
 
 import com.baizhi.cmfz.entity.Manager;
-import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -10,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public interface ManagerService {
 
-    public Manager queryManagerByMgrName(String mgrName,String mgrPwd) throws NoSuchAlgorithmException;
+    public Manager queryManagerByMgrName(String mgrName,String mgrPwd);
 
-    public void addManager(Manager manager) throws NoSuchAlgorithmException;
+    public int addManager(Manager manager);
 }

@@ -9,6 +9,7 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>
     </context:component-scan>
 
+    <!-- 数据源（连接池） -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="username" value="root"/>
@@ -16,12 +17,18 @@
         <property name="url" value="jdbc:mysql://localhost:3306/wt"/>
     </bean>
 
+    <!-- SqlSession工厂 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 连接池  -->
         <property name="dataSource" ref="dataSource"/>
+        <!-- 实体类别名 -->
         <property name="typeAliasesPackage" value="com.baizhi.cmfz.entity"/>
+        <!-- Mapper文件的位置 -->
         <property name="mapperLocations" value="classpath:/com/baizhi/cmfz/mapper/*Mapper.xml"/>
     </bean>
-    
+
+    <!-- 对象源：自动根据Mapper文件，创建对应的DAO实现类对象  -->
+    <!-- 被自动创建的DAO实现类对象，它的bean id 有约定俗成的写法 -->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.baizhi.cmfz.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>

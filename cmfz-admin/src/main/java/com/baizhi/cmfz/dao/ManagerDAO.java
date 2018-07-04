@@ -11,5 +11,5 @@ public interface ManagerDAO {
 
     public Manager selectManagerByName(@Param("mgrName") String mgrName);
 
-    public void insertManager(Manager manager);
+    public int insertManager(Manager manager);
 }

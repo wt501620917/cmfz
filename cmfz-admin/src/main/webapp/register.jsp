@@ -13,13 +13,13 @@
 	<script type="text/javascript" src="script/jquery.js"></script>
 	<script type="text/javascript" src="script/common.js"></script>
 	<script type="text/javascript">
-	
+
 		$(function(){
 			/*//点击更换验证码：
 			$("#captchaImage").click(function(){//点击更换验证码
 				alert("自己做");
 			});
-			
+
 			//  form 表单提交
 			$("#loginForm").bind("submit",function(){
 				alert("自己做");
@@ -31,7 +31,7 @@
 <body>
 	
 		<div class="login">
-			<form id="loginForm" action="manager/login.do" method="post" >
+			<form action="manager/register.do" method="post" >
 				
 				<table>
 					<tbody>
@@ -54,33 +54,11 @@
 								<input type="password" name="mgrPwd" class="text" maxlength="20" autocomplete="off"/>
 							</td>
 					  </tr>
-					
-						<tr>
-							<td>&nbsp;</td>
-							<th>验证码:</th>
-							<td>
-								<input type="text" id="enCode" name="enCode" class="text captcha" maxlength="4" autocomplete="off"/>
-								<img id="captchaImage" class="captchaImage" src="img/captcha.jpg" title="点击更换验证码"/>
-							</td>
-						</tr>					
-					<tr>
-						<td>
-							&nbsp;
-						</td>
-						<th>
-							&nbsp;
-						</th>
-						<td>
-							<label>
-								<input type="checkbox" id="isRememberUsername" value="true"/> 记住用户名
-							</label>
-						</td>
-					</tr>
 					<tr>
 						<td>&nbsp;</td>
 						<th>&nbsp;</th>
 						<td>
-							<input type="button" class="homeButton" value="" onclick="location.href='/'"><input type="submit" class="loginButton" value="登录" />
+							<input type="button" class="homeButton" value="" onclick="location.href='/'"><input type="submit" class="loginButton" value="注册" />
 						</td>
 					</tr>
 				</tbody></table>

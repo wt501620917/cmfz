@@ -1,13 +1,12 @@
 package com.baizhi.cmfz.service;
 
+
 import com.baizhi.cmfz.dao.ManagerDAO;
 import com.baizhi.cmfz.entity.Manager;
 import com.baizhi.cmfz.util.EncryptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by 王同 on 2018/7/4.
@@ -22,20 +21,21 @@ public class ManagerServiceImpl implements ManagerService{
 
     @Transactional(readOnly = true)
     @Override
-    public Manager queryManagerByMgrName(String mgrName, String mgrPwd) throws NoSuchAlgorithmException {
+    public Manager queryManagerByMgrName(String mgrName, String mgrPwd){
         Manager manager = managerDAO.selectManagerByName(mgrName);
-        String password = EncryptionUtils.encryption(mgrPwd+manager.getMgrSalt());
-        if(manager.getMgrSalt().equals(password)){
+        String password = EncryptionUtils.encryptionCodec(mgrPwd+manager.getMgrSalt());
+        if(manager.getMgrPwd().equals(password)){
             return manager;
         }
         return null;
     }
 
     @Override
-    public void addManager(Manager manager) throws NoSuchAlgorithmException {
+    public int addManager(Manager manager){
         String salt = EncryptionUtils.getRandomSalt(6);
         manager.setMgrSalt(salt);
-        manager.setMgrPwd(EncryptionUtils.encryption(manager.getMgrPwd()+salt));
-        managerDAO.insertManager(manager);
+        manager.setMgrPwd(EncryptionUtils.encryptionCodec(manager.getMgrPwd()+salt));
+        manager.setMgrStatus("common");
+        return managerDAO.insertManager(manager);
     }
 }

@@ -7,7 +7,7 @@
     </select>
 
     <insert id="insertManager">
-        insert into t_user values(#{mgrName},#{mgrPwd},#{mgrSalt})
+        insert into t_user values(#{mgrId},#{mgrName},#{mgrPwd},#{mgrSalt},#{mgrStatus})
     </insert>
      
 </mapper>
